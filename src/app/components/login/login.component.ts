@@ -76,8 +76,8 @@ export class LoginComponent implements OnInit {
 
     // กำหนดค่าให้กับ Form
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(3)]], // iamsamit
-      password: ['', [Validators.required, Validators.minLength(8)]], // Samit@1234
+      username: ['user1', [Validators.required, Validators.minLength(3)]], // iamsamit
+      password: ['User1@1234', [Validators.required, Validators.minLength(8)]], // Samit@1234
     })
 
     // เช็คว่าถ้า Login อยู่แล้วให้ Redirect ไปหน้า Dashboard
@@ -95,12 +95,12 @@ export class LoginComponent implements OnInit {
       this.userData.username = this.loginForm.value.username
       this.userData.password = this.loginForm.value.password
 
-      // console.log(this.userData)
+      console.log(this.userData)
 
       // เรียกใช้งาน Service สำหรับ Login
       this.http.Login(this.userData).subscribe({
         next: (data: any) => {
-          // console.log(data)
+          console.log(data)
           if(data.token != null){
 
             // show dialog
