@@ -11,6 +11,7 @@ import { Observable } from 'rxjs'
 
 // Import environment
 import { environment } from '../../environments/environment'
+import { ProductCreateUpdateModel, ProductModel } from '../models/product.model'
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class ProductService {
   private http = inject(HttpClient)
   private cookieService = inject(CookieService)
 
-  // Read token from cookie ถ้าไม่มีให้เ็น ว่างๆ
+  // Read token from cookie
   token = this.cookieService.get("LoggedInToken") || ""
 
   // Header for GET, DELETE
@@ -46,7 +47,7 @@ export class ProductService {
     limit: number, 
     selectedCategory: string, 
     searchQuery: string
-  ): Observable<any>
+  ): Observable<ProductModel>
   {
     let url = this.apiURL + 'Product?page=' + page + '&limit=' + limit
 
@@ -58,23 +59,23 @@ export class ProductService {
       url += '&searchQuery=' + searchQuery
     }
 
-    return this.http.get<any>(
+    return this.http.get<ProductModel>(
       url, 
       this.httpOptions
     )
   }
 
   // Get Product By ID
-  getProductById(id: number): Observable<any> {
-    return this.http.get<any>(
+  getProductById(id: number): Observable<ProductModel> {
+    return this.http.get<ProductModel>(
       this.apiURL + 'Product/' + id, 
       this.httpOptions
     )
   }
 
   // Create Product
-  createProduct(product: any): Observable<any> {
-    return this.http.post<any>(
+  createProduct(product: ProductCreateUpdateModel): Observable<ProductCreateUpdateModel> {
+    return this.http.post<ProductCreateUpdateModel>(
       this.apiURL + 'Product', 
       product, 
       this.httpOptionsPost
@@ -82,8 +83,8 @@ export class ProductService {
   }
 
   // Update Product
-  updateProduct(id: number, product: any): Observable<any> {
-    return this.http.put<any>(
+  updateProduct(id: number, product: ProductCreateUpdateModel): Observable<ProductCreateUpdateModel> {
+    return this.http.put<ProductCreateUpdateModel>(
       this.apiURL + 'Product/' + id,
       product, 
       this.httpOptionsPost
@@ -91,8 +92,8 @@ export class ProductService {
   }
 
   // Delete Product
-  deleteProduct(id: number): Observable<any> {
-    return this.http.delete<any>(
+  deleteProduct(id: number): Observable<unknown> {
+    return this.http.delete<unknown>(
       this.apiURL + 'Product/' + id, 
       this.httpOptions
     )

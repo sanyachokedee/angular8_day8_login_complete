@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
-    dotnet_api_url: 'http://localhost:8081/api/',
-    dotnet_api_url_image: 'http://localhost:8081/wwwroot/uploads/',
+    dotnet_api_url: 'https://dotnetstockrender.onrender.com/api/',
+    dotnet_api_url_image: 'https://dotnetstockrender.onrender.com/api/',
     base_url: '',
     token: '',
     version: '1.0',

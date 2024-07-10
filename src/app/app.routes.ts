@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StockComponent } from './components/stock/stock.component';
 // Auth Guard
 import { authGuard } from './auth/auth.guard'
+import { EventComponent } from './components/event/event.component';
 
 export const routes: Routes = [
     { 
@@ -33,6 +34,13 @@ export const routes: Routes = [
         component: StockComponent,
         canActivate: [authGuard],
         data: { title: 'Stock'}
+    },
+    {
+        path: 'event',
+        component: EventComponent,
+        canActivate: [authGuard],
+        data: { title: 'Event'}
+
     },
     {
         // ถ้ามั่วๆให้เช้า login
